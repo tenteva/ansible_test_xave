@@ -1,0 +1,21 @@
+--- # Installation NGINX
+- hosts: localhost
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: local
+  gather_facts: yes
+  vars:
+  tasks:
+  - name: Install HTTPD on Centos 7
+    yum:
+      name: nginx
+      state: latest
+    notify:
+    - restartNginx
+  handlers:
+  - name: restartNginx
+    service:
+      name: nginx
+      enabled: yes
+      state: restarted

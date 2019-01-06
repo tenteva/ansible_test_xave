@@ -1,0 +1,21 @@
+--- # Installation HTTPD
+- hosts: localhost
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: local
+  gather_facts: yes
+  vars:
+    username: myuser
+  tasks:
+  - name: Install HTTPD on Centos 7 {{ username }}
+    yum:
+      name: httpd
+      state: latest
+    notify:
+    - name: startservice
+  handlers:
+  - name: startservice
+    service:
+      name: httpd
+      state: restarted

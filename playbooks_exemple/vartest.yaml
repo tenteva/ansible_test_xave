@@ -1,0 +1,16 @@
+--- # Installation HTTPD
+- hosts: '{{ myhost }}'
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: local
+  gather_facts: '{{ gather }}'
+  vars:
+    myhost: localhost
+    gather: yes
+    pkg: telnet
+  tasks:
+  - name: Install {{ pkg }} on Centos 7 on {{ myhost }}
+    yum:
+      name: '{{ pkg }}'
+      state: latest

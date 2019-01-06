@@ -1,0 +1,15 @@
+--- # Installation Telnet
+- hosts: localhost
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: local
+  gather_facts: yes
+  vars:
+  tasks:
+  - name: Install telnet on Centos 7
+    yum:
+      name: telnet
+      state: latest
+    register: result
+  - debug: var=result
